@@ -1,8 +1,8 @@
 /*******************************************************
-			ÎÄ¼şÃû³Æ£ºmain.cpp
-			ÎÄ¼şÃèÊö£ºÊµÏÖÒ»¸öÌ°³ÔÉßµÄÓÎÏ·
-			±àÒë»·¾³£ºVS 2015
-			×îºóĞŞ¸Ä£º<2017-12-21> <´´½¨¹¤³Ì> <Áõ¶Ø»Ô>
+			æ–‡ä»¶åç§°ï¼šmain.cpp
+			æ–‡ä»¶æè¿°ï¼šå®ç°ä¸€ä¸ªè´ªåƒè›‡çš„æ¸¸æˆ
+			ç¼–è¯‘ç¯å¢ƒï¼šVS 2015
+			æœ€åä¿®æ”¹ï¼š<2017-12-21> <åˆ›å»ºå·¥ç¨‹> 
 *******************************************************/
 #include"snake.h"
 
@@ -12,13 +12,13 @@ int main()
 	DrawSnake();
 	while (1)
 	{
-		while (!kbhit())   //Ìø³öµÄÌõ¼şµÄ°´¼ü
+		while (!kbhit())   //è·³å‡ºçš„æ¡ä»¶çš„æŒ‰é”®
 		{
 			if (food.flag == 0) {
 				CoorFood();
 			}
-			DrawSnake();//ÉßµÄÒÆ¶¯±¾ÉíÊÇÒ»¸öÑ­»·
-			SnakeMove();//ÉßµÄÒÆ¶¯-¡·¸Ä±ä·½Ïò-¡·ÒÆ¶¯
+			DrawSnake();//è›‡çš„ç§»åŠ¨æœ¬èº«æ˜¯ä¸€ä¸ªå¾ªç¯
+			SnakeMove();//è›‡çš„ç§»åŠ¨-ã€‹æ”¹å˜æ–¹å‘-ã€‹ç§»åŠ¨
 			EatFood();
 			Sleep(150);
 		}
@@ -27,7 +27,7 @@ int main()
 	return 0;
 }
 
-//ÓÎÏ·µÄ³õÊ¼»¯
+//æ¸¸æˆçš„åˆå§‹åŒ–
 void GameInit()
 {
 	initgraph(640, 480);
@@ -36,26 +36,26 @@ void GameInit()
 
 	//setbkcolor(RGB(248, 120, 152));
 	setbkcolor(RGB(255, 160, 160));
-	cleardevice();//ÓÃÉèºÃµÄÑÕÉ«À´Ë¢ĞÂ±³¾°
+	cleardevice();//ç”¨è®¾å¥½çš„é¢œè‰²æ¥åˆ·æ–°èƒŒæ™¯
 
-	mciSendString(L"open Ë¦´Ğ¸è.mp3 alias music", 0, 0, 0);	//MIC send ·¢ËÍ  string ×Ö·û´®
+	mciSendString(L"open ç”©è‘±æ­Œ.mp3 alias music", 0, 0, 0);	//MIC send å‘é€  string å­—ç¬¦ä¸²
 	mciSendString(L"play music", 0, 0, 0);
 
-	rectangle(0,0,10,10);     //³õÊ¼»¯Ò»½ÚÉß
+	rectangle(0,0,10,10);     //åˆå§‹åŒ–ä¸€èŠ‚è›‡
 	snake.n = 1;
 	snake.sCoor[0].x = 0;
 	snake.sCoor[0].y = 0;
-	snake.ch = right;//ÉÏÏÂ×óÓÒ
-	food.flag = 0;//Ê³Îï±»³Ôµô²ÅÄÜ²úÉúĞÂµÄÊ³Îï
+	snake.ch = right;//ä¸Šä¸‹å·¦å³
+	food.flag = 0;//é£Ÿç‰©è¢«åƒæ‰æ‰èƒ½äº§ç”Ÿæ–°çš„é£Ÿç‰©
 }
 
-//n½ÚÉß!!!!!!»­Éß
+//nèŠ‚è›‡!!!!!!ç”»è›‡
 void DrawSnake()
 {
 	BeginBatchDraw();
 	cleardevice();
 	roundrect(food.x, food.y, food.x + 10, food.y + 10, 10, 10);
-	for (int i = snake.n - 1; i >= 0; i--) //n½ÚÉß   0--n-1
+	for (int i = snake.n - 1; i >= 0; i--) //nèŠ‚è›‡   0--n-1
 	{
 		//setcolor(RGB(snake.sCoor[i].x / 2, snake.sCoor[i].y / 2, i * 20));
 		rectangle(snake.sCoor[i].x, snake.sCoor[i].y, snake.sCoor[i].x+10, snake.sCoor[i].y+10);
@@ -63,7 +63,7 @@ void DrawSnake()
 	EndBatchDraw();
 }
 
-//Ã¿Ò»¸ö×ø±êµÄx+10
+//æ¯ä¸€ä¸ªåæ ‡çš„x+10
 void SnakeMove()
 {
 	for (int i = snake.n - 1; i > 0; i--)
@@ -72,7 +72,7 @@ void SnakeMove()
 		snake.sCoor[i].y=snake.sCoor[i - 1].y;
 		//setcolor(RGB(snake.sCoor[i].x/2, snake.sCoor[i].y/2, i*10));
 	}
-	//¸ù¾İ²»Í¬µÄ·½ÏòÀ´¸Ä±ä²»Í¬
+	//æ ¹æ®ä¸åŒçš„æ–¹å‘æ¥æ”¹å˜ä¸åŒ
 	switch (snake.ch)
 	{
 	case up:
@@ -90,10 +90,10 @@ void SnakeMove()
 	}
 }
 
-//¸Ä±ä·½Ïò
+//æ”¹å˜æ–¹å‘
 void ChangeCh()
 {
-	int move;//°´¼ü
+	int move;//æŒ‰é”®
 	move = getch();
 
 	switch (move) {
@@ -116,7 +116,7 @@ void ChangeCh()
 	}	
 }
 
-//¼ÆËãÊ³ÎïµÄ×ø±ê
+//è®¡ç®—é£Ÿç‰©çš„åæ ‡
 void CoorFood()
 {
 	food.x = rand() % 64 * 10;
@@ -124,7 +124,7 @@ void CoorFood()
 	food.flag = 1;
 }
 
-//³ÔÊ³Îï
+//åƒé£Ÿç‰©
 	void EatFood()
 	{
 	if (snake.sCoor[0].x == food.x&&snake.sCoor[0].y == food.y) {
